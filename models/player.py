@@ -9,6 +9,7 @@ from constants import (
     PLAYER_TURN_SPEED,
 )
 from models.circleshape import CircleShape
+from models.score import Score
 from models.shot import Shot
 
 
@@ -17,6 +18,7 @@ class Player(CircleShape):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
         self.cooldown = 0
+        self.score = Score()
 
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)

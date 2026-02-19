@@ -7,6 +7,7 @@ from logger import log_event, log_state
 from models.asteroid import Asteroid
 from models.asteroidfield import AsteroidField
 from models.player import Player
+from models.score import Score
 from models.shot import Shot
 
 
@@ -25,10 +26,10 @@ def main():
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable,)
     Shot.containers = (updatable, drawable, shots)
+    Score.containers = (drawable,)
     dt = 0
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     AsteroidField()
-
     while True:
         tmp = clock.tick(60)
         dt = tmp / 1000
@@ -52,8 +53,9 @@ def main():
             for s in shots:
                 if a.collides_with(s):
                     log_event("asteroid_shot")
-                    a.split()
+                    points = a.split()
                     s.kill()
+                    player.score.score_points(points)
 
 
 if __name__ == "__main__":
