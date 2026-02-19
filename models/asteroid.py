@@ -2,9 +2,9 @@ import random
 
 import pygame
 
-from circleshape import CircleShape
-from constants import ASTEROID_MIN_RADIUS, LINE_WIDTH, PLAYER_SPEED, PLAYER_TURN_SPEED
+from constants import ASTEROID_MIN_RADIUS, LINE_WIDTH, PLAYER_TURN_SPEED
 from logger import log_event
+from models.circleshape import CircleShape
 
 
 class Asteroid(CircleShape):

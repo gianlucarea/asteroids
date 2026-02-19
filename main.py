@@ -1,11 +1,14 @@
-import pygame
 import sys
-from constants import SCREEN_WIDTH,SCREEN_HEIGHT
-from logger import log_state,log_event
-from player import Player
-from asteroid import Asteroid
-from asteroidfield import AsteroidField
-from shot import Shot
+
+import pygame
+
+from constants import SCREEN_HEIGHT, SCREEN_WIDTH
+from logger import log_event, log_state
+from models.asteroid import Asteroid
+from models.asteroidfield import AsteroidField
+from models.player import Player
+from models.shot import Shot
+
 
 def main():
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
@@ -21,12 +24,10 @@ def main():
     Player.containers = (updatable, drawable)
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable,)
-    Shot.containers = (updatable,drawable,shots)
+    Shot.containers = (updatable, drawable, shots)
     dt = 0
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-    asteroid_field = AsteroidField()
-
-
+    AsteroidField()
 
     while True:
         tmp = clock.tick(60)
@@ -53,5 +54,7 @@ def main():
                     log_event("asteroid_shot")
                     a.split()
                     s.kill()
+
+
 if __name__ == "__main__":
     main()
